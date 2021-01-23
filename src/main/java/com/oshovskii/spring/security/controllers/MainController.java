@@ -39,7 +39,7 @@ public class MainController {
 
     @GetMapping("/only_for_admins/score/get/{id}")
     public String pageOnlyForAdmins(@PathVariable Long id) {
-        return "admins page " + " user " + userService.findByUserId(1L);
+        return "admins page " + " user " + userService.findByUserId(1L).getScore();
     }
 
 

@@ -4,7 +4,6 @@ import com.oshovskii.spring.security.entities.Role;
 import com.oshovskii.spring.security.entities.User;
 import com.oshovskii.spring.security.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -58,7 +57,7 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public int findByUserId(Long id) {
-        return userRepository.findByUserId(id).getScore();
+    public User findByUserId(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", id)));
     }
 }
